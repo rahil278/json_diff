@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  json_diff_api:
+    image: nginx:alpine
+    container_name: json_diff_api
+    hostname : json_diff_api
+    restart: always
+    tty: true
+    ports:
+     - 8007:80
+    volumes:
+      - ./:/usr/share/nginx/html/
+    healthcheck:
+      test: ["CMD-SHELL", "wget -O /dev/null http://localhost || exit 1"]
+      timeout: 10s
